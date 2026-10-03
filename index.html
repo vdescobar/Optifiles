@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compresor de imágenes online gratis para web e impresión | Optifile</title>
+<meta name="description" content="Comprime imágenes online gratis: reduce el peso de tus fotos JPG, PNG y WebP sin perder calidad. Sin registro, sin marca de agua y sin subir archivos.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Compresor de imágenes online gratis para web e impresión | Optifile">
+<meta property="og:description" content="Reduce el peso de tus fotos y ajusta DPI y color para web, email o papel. Gratis, sin registro y sin subir archivos.">
+<link rel="canonical" href="https://optifiles.netlify.app/">
+<meta property="og:url" content="https://optifiles.netlify.app/">
+<meta property="og:locale" content="es_ES">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Optifile – Compresor de imágenes","applicationCategory":"MultimediaApplication","operatingSystem":"Cualquier navegador moderno","url":"https://optifiles.netlify.app/","inLanguage":"es","description":"Compresor de imágenes online gratuito para web e impresión: reduce peso, resolución (DPI) y color sin subir archivos a ningún servidor.","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "¿El compresor de imágenes es gratis?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Puedes comprimir imágenes online gratis, sin registrarte, sin marca de agua y sin límite de imágenes. No hay que instalar ningún programa: funciona desde el navegador."}}, {"@type": "Question", "name": "¿Mis imágenes se suben a un servidor?", "acceptedAnswer": {"@type": "Answer", "text": "No. La compresión se hace en tu navegador, así que la foto no sale de tu dispositivo ni se guarda en ningún sitio. Es útil cuando la imagen es personal o de trabajo y prefieres no subirla a un servicio externo."}}, {"@type": "Question", "name": "¿Se pierde calidad al comprimir una imagen?", "acceptedAnswer": {"@type": "Answer", "text": "El JPG comprime descartando detalle que apenas se percibe. Con una calidad de 75-85 % la diferencia suele ser difícil de apreciar, y con el comparador de original y optimizada lo compruebas antes de descargar. Por debajo de ese rango empiezan a verse artefactos."}}, {"@type": "Question", "name": "¿Qué formatos puedo comprimir?", "acceptedAnswer": {"@type": "Answer", "text": "Puedes cargar fotos en JPG, PNG y WebP. El resultado se descarga siempre como JPG, el formato más ligero para fotografías. Si tu PNG tiene transparencia, el fondo transparente se convierte en blanco."}}, {"@type": "Question", "name": "¿Cuántos DPI necesito para imprimir una imagen?", "acceptedAnswer": {"@type": "Answer", "text": "150 DPI (o PPP, puntos por pulgada) bastan para borradores y documentos, 200 para informes y presentaciones, y 300 para fotografías o impresión de calidad. Más allá de eso solo aumenta el peso. Optifile calcula los píxeles a partir del ancho en cm y los DPI que elijas."}}, {"@type": "Question", "name": "¿Cuánto se puede reducir el peso de una imagen?", "acceptedAnswer": {"@type": "Answer", "text": "Depende de la imagen. Las fotos de cámara o de móvil, que pueden pesar varios MB, son las que más bajan, porque suelen tener muchos más píxeles de los necesarios. Si un formulario o un email te pide menos de 1 MB, reduce el ancho o la calidad hasta que el peso optimizado quede por debajo del límite."}}, {"@type": "Question", "name": "¿Funciona en el móvil?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Funciona en cualquier navegador de Android, iPhone, tablet u ordenador, sin instalar una app. Es una forma rápida de bajar el peso de las fotos del móvil antes de enviarlas por WhatsApp o por email."}}]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FAF9F6;
+    --paper-card: #FFFFFF;
+    --paper-dark: #F1F5F9;
+    --ink: #0F172A;
+    --toner: #64748B;
+    --toner-light: #94A3B8;
+    --cyan: #0284C7;
+    --cyan-hover: #0369A1;
+    --cyan-soft: rgba(2, 132, 199, 0.08);
+    --emerald: #059669;
+    --emerald-bg: #ECFDF5;
+    --amber: #D97706;
+    --amber-bg: #FFFBEB;
+    --line: rgba(15, 23, 42, 0.1);
+    --line-soft: rgba(15, 23, 42, 0.05);
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 20px;
+    --shadow-sm: 0 1px 3px rgba(15,23,42,0.06);
+    --shadow-md: 0 8px 20px -4px rgba(15,23,42,0.08);
+    --shadow-lg: 0 20px 32px -8px rgba(15,23,42,0.12);
+    
+    --disp: 'Space Grotesk', sans-serif;
+    --body: 'Plus Jakarta Sans', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    line-height: 1.6;
+    background-image:
+      linear-gradient(var(--line-soft) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+    background-size: 32px 32px;
+    background-position: -1px -1px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+  ::selection { background: var(--cyan); color: #fff; }
+  :focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+
+  .wrap { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+
+  /* HEADER */
+  header {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(250, 249, 246, 0.9);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 0;
+  }
+  .brand {
+    display: flex; align-items: center; gap: 12px;
+    font-family: var(--disp); font-weight: 700;
+    font-size: 22px; letter-spacing: -0.02em;
+    text-decoration: none; color: var(--ink);
+  }
+  .brand-icon {
+    width: 34px; height: 34px;
+    background: linear-gradient(135deg, var(--ink), #1E293B);
+    border-radius: var(--radius-sm);
+    display: flex; align-items: center; justify-content: center;
+    color: #FFF; box-shadow: var(--shadow-sm);
+  }
+  .nav-links { display: flex; gap: 28px; font-family: var(--body); font-weight: 600; font-size: 14px; color: var(--toner); }
+  .nav-links a { text-decoration: none; transition: color 0.15s; }
+  .nav-links a:hover { color: var(--ink); }
+  @media (max-width: 720px) { .nav-links { display: none; } }
+
+  /* HERO */
+  .hero { padding: 80px 0 48px; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--mono); font-size: 12px; font-weight: 600;
+    color: var(--cyan); background: var(--cyan-soft);
+    padding: 6px 14px; border-radius: 20px; margin-bottom: 24px;
+    border: 1px solid rgba(2, 132, 199, 0.15);
+  }
+
+  h1 {
+    font-family: var(--disp); font-weight: 700;
+    font-size: clamp(36px, 5.2vw, 62px); line-height: 1.08;
+    letter-spacing: -0.03em; margin: 0 0 24px; max-width: 19ch;
+  }
+  h1 em {
+    font-style: normal;
+    background: linear-gradient(120deg, var(--cyan), #0369A1);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    text-decoration: underline; text-decoration-color: rgba(2, 132, 199, 0.3);
+    text-underline-offset: 8px;
+  }
+
+  .hero-sub { font-size: 18px; color: var(--toner); max-width: 58ch; margin: 0 0 36px; line-height: 1.6; }
+  .hero-sub b { color: var(--ink); font-weight: 600; }
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; margin-bottom: 56px; }
+  
+  /* BUTTONS */
+  .btn {
+    font-family: var(--body); font-size: 14px; font-weight: 600;
+    padding: 13px 26px; border-radius: var(--radius-sm);
+    border: 1px solid transparent; cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    text-decoration: none; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .btn-primary { background: var(--ink); color: var(--paper); box-shadow: var(--shadow-sm); }
+  .btn-primary:hover { background: #1e293b; transform: translateY(-1px); box-shadow: var(--shadow-md); }
+  .btn-ghost { background: var(--paper-card); color: var(--ink); border-color: var(--line); }
+  .btn-ghost:hover { background: var(--paper-dark); border-color: rgba(15,23,42,0.2); }
+  .btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none !important; box-shadow: none !important; }
+
+  /* HALFTONE STRIP */
+  .halftone-container {
+    background: var(--paper-card); border: 1px solid var(--line);
+    border-radius: var(--radius-md); padding: 16px; box-shadow: var(--shadow-sm);
+  }
+  .halftone { width: 100%; height: 50px; display: block; }
+  .halftone-caption {
+    display: flex; justify-content: space-between;
+    font-family: var(--mono); font-size: 11px; color: var(--toner);
+    margin-top: 8px; letter-spacing: 0.03em; text-transform: uppercase;
+  }
+
+  /* SECTIONS */
+  .section { padding: 80px 0; }
+  .section-head { margin-bottom: 40px; max-width: 60ch; }
+  .kicker {
+    font-family: var(--mono); font-size: 12px; color: var(--cyan);
+    text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px;
+    display: block; font-weight: 600;
+  }
+  h2 { font-family: var(--disp); font-weight: 700; font-size: clamp(28px, 3.5vw, 40px); margin: 0 0 12px; letter-spacing: -0.02em; }
+  .section-head p { color: var(--toner); font-size: 16px; margin: 0; }
+
+  /* TOOL / STUDIO */
+  .tool {
+    border: 1px solid var(--line); border-radius: var(--radius-lg);
+    background: var(--paper-card); box-shadow: var(--shadow-lg); overflow: hidden;
+  }
+  .tool-top {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 20px; border-bottom: 1px solid var(--line);
+    background: var(--paper-dark); font-family: var(--mono); font-size: 12px; color: var(--toner);
+  }
+  .tool-top .dots { display: flex; gap: 6px; }
+  .tool-top .dots span { width: 10px; height: 10px; border-radius: 50%; background: #CBD5E1; }
+
+  .drop {
+    margin: 32px; padding: 64px 24px; border: 2px dashed #CBD5E1;
+    border-radius: var(--radius-md); text-align: center; cursor: pointer;
+    background: var(--paper); transition: all 0.2s ease;
+  }
+  .drop:hover, .drop.drag { border-color: var(--cyan); background: var(--cyan-soft); }
+  .drop-icon-wrap {
+    width: 56px; height: 56px; border-radius: 50%; background: var(--paper-card);
+    display: inline-flex; align-items: center; justify-content: center;
+    margin-bottom: 16px; box-shadow: var(--shadow-sm); color: var(--cyan);
+  }
+  .drop p { margin: 0 0 6px; font-weight: 700; font-size: 16px; color: var(--ink); }
+  .drop span { font-family: var(--mono); font-size: 12px; color: var(--toner); }
+  .drop input { display: none; }
+
+  .studio { display: none; padding: 0 32px 32px; }
+  .studio.active { display: block; }
+
+  .studio-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: 32px; align-items: start; }
+  @media (max-width: 900px) { .studio-grid { grid-template-columns: 1fr; } }
+
+  .compare-container { position: sticky; top: 90px; }
+  .compare {
+    position: relative; border: 1px solid var(--line); border-radius: var(--radius-md);
+    overflow: hidden; background-color: #E2E8F0;
+    background-image:
+      linear-gradient(45deg, #CBD5E1 25%, transparent 25%),
+      linear-gradient(-45deg, #CBD5E1 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #CBD5E1 75%),
+      linear-gradient(-45deg, transparent 75%, #CBD5E1 75%);
+    background-size: 20px 20px; background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+    aspect-ratio: 4/3; box-shadow: inset 0 2px 6px rgba(0,0,0,0.05);
+  }
+  .compare img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; display: block; }
+  .compare .after { clip-path: inset(0 0 0 50%); }
+  .compare-handle {
+    position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: var(--ink);
+    transform: translateX(-1px); pointer-events: none; box-shadow: 0 0 8px rgba(0,0,0,0.3);
+  }
+  .compare-handle::after {
+    content: "↔"; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    width: 34px; height: 34px; background: var(--ink); color: var(--paper);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: bold; box-shadow: var(--shadow-md);
+  }
+  .compare-range {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    opacity: 0; cursor: ew-resize; margin: 0; z-index: 10;
+  }
+  .compare-tags {
+    display: flex; justify-content: space-between; margin-top: 10px;
+    font-family: var(--mono); font-size: 11px; font-weight: 600; color: var(--toner);
+    text-transform: uppercase; letter-spacing: 0.05em;
+  }
+
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 20px; }
+  @media (max-width: 640px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+  .stat { background: var(--paper); border: 1px solid var(--line); padding: 12px; border-radius: var(--radius-sm); }
+  .stat .n { font-family: var(--mono); font-size: 18px; font-weight: 700; color: var(--ink); }
+  .stat .l { font-family: var(--mono); font-size: 10px; color: var(--toner); text-transform: uppercase; margin-top: 2px; }
+  .stat.good { background: var(--emerald-bg); border-color: rgba(5, 150, 105, 0.2); }
+  .stat.good .n { color: var(--emerald); }
+
+  .note {
+    font-size: 13px; color: var(--toner); margin-top: 18px; line-height: 1.5;
+    background: var(--paper-dark); border: 1px solid var(--line);
+    border-radius: var(--radius-sm); padding: 12px 14px; display: flex; gap: 10px; align-items: flex-start;
+  }
+
+  /* SETTINGS PANEL */
+  .settings { display: flex; flex-direction: column; gap: 20px; }
+  fieldset {
+    border: 1px solid var(--line); border-radius: var(--radius-md);
+    padding: 16px 18px; margin: 0; background: var(--paper-card);
+  }
+  legend {
+    font-family: var(--mono); font-size: 11px; font-weight: 600;
+    padding: 0 8px; color: var(--toner); text-transform: uppercase; letter-spacing: 0.05em;
+  }
+
+  .radio-row { display: flex; flex-direction: column; gap: 10px; }
+  .radio-opt {
+    display: flex; align-items: flex-start; gap: 12px; padding: 10px;
+    border-radius: var(--radius-sm); border: 1px solid var(--line-soft);
+    cursor: pointer; transition: background 0.15s, border-color 0.15s;
+  }
+  .radio-opt:hover { background: var(--paper); border-color: var(--line); }
+  .radio-opt input { margin-top: 3px; accent-color: var(--cyan); }
+  .radio-opt .lbl { font-weight: 600; font-size: 13.5px; display: block; color: var(--ink); }
+  .radio-opt .hint { display: block; color: var(--toner); font-size: 12px; margin-top: 1px; }
+
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .field label { font-size: 13px; font-weight: 600; color: var(--ink); }
+  .field input[type=number] {
+    font-family: var(--mono); border: 1px solid var(--line); border-radius: var(--radius-sm);
+    padding: 10px 12px; font-size: 14px; width: 100%; background: var(--paper);
+    color: var(--ink); outline: none; transition: border-color 0.15s;
+  }
+  .field input[type=number]:focus { border-color: var(--cyan); }
+  .field input[type=range] { width: 100%; accent-color: var(--cyan); margin-top: 4px; }
+  .range-header { display: flex; justify-content: space-between; align-items: center; }
+  .range-val { font-family: var(--mono); font-size: 12px; font-weight: 600; color: var(--cyan); }
+
+  .checkline {
+    display: flex; align-items: flex-start; gap: 12px; padding: 10px;
+    border-radius: var(--radius-sm); border: 1px solid var(--line-soft);
+    cursor: pointer; transition: background 0.15s; margin-bottom: 8px;
+  }
+  .checkline:last-child { margin-bottom: 0; }
+  .checkline:hover { background: var(--paper); }
+  .checkline input { margin-top: 3px; accent-color: var(--cyan); }
+  .checkline .lbl { font-weight: 600; font-size: 13.5px; display: block; }
+  .checkline .hint { display: block; color: var(--toner); font-size: 12px; margin-top: 1px; }
+
+  .actions-row { display: flex; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
+  .actions-row .btn { flex: 1; min-width: 160px; }
+
+  /* STEPS & WHY */
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  @media (max-width: 860px) { .steps { grid-template-columns: 1fr; } }
+  .step {
+    background: var(--paper-card); border: 1px solid var(--line);
+    padding: 28px; border-radius: var(--radius-md); box-shadow: var(--shadow-sm);
+  }
+  .step .num {
+    font-family: var(--mono); font-size: 12px; font-weight: 700;
+    color: var(--cyan); background: var(--cyan-soft); width: 32px; height: 32px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 16px;
+  }
+  .step h3 { font-family: var(--disp); font-weight: 700; font-size: 18px; margin: 0 0 8px; }
+  .step p { color: var(--toner); font-size: 14px; margin: 0; line-height: 1.5; }
+
+  .why { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center; }
+  @media (max-width: 860px) { .why { grid-template-columns: 1fr; } }
+  .triggers { display: flex; flex-direction: column; gap: 12px; }
+  .trigger {
+    display: flex; gap: 16px; padding: 18px; border-radius: var(--radius-md);
+    background: var(--paper-card); border: 1px solid var(--line); box-shadow: var(--shadow-sm);
+  }
+  .trigger .tag {
+    font-family: var(--mono); font-size: 10px; font-weight: 700; color: var(--paper);
+    background: var(--ink); padding: 4px 8px; border-radius: 4px; height: fit-content;
+    flex: none; text-transform: uppercase;
+  }
+  .trigger h3 { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+  .trigger p { margin: 0; font-size: 13.5px; color: var(--toner); }
+
+  .why-visual {
+    border: 1px solid var(--line); border-radius: var(--radius-lg);
+    padding: 28px; background: var(--paper-card); box-shadow: var(--shadow-md);
+  }
+  .why-visual svg { width: 100%; height: auto; display: block; }
+  .why-visual .cap { font-family: var(--mono); font-size: 11px; color: var(--toner); margin-top: 16px; text-align: center; }
+
+  /* FLOATING FEEDBACK WIDGET & MODAL */
+  .feedback-btn {
+    position: fixed; bottom: 24px; right: 24px; z-index: 90;
+    background: var(--ink); color: #fff; border: none;
+    padding: 12px 18px; border-radius: 30px; font-family: var(--body);
+    font-size: 13px; font-weight: 600; cursor: pointer;
+    box-shadow: var(--shadow-lg); display: flex; align-items: center; gap: 8px;
+    transition: transform 0.2s, background 0.2s;
+  }
+  .feedback-btn:hover { transform: translateY(-2px); background: #1E293B; }
+
+  .modal-overlay {
+    position: fixed; inset: 0; z-index: 100;
+    background: rgba(15, 23, 42, 0.5); backdrop-filter: blur(4px);
+    display: flex; align-items: center; justify-content: center; padding: 20px;
+    opacity: 0; pointer-events: none; transition: opacity 0.25s ease;
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: auto; }
+
+  .modal-card {
+    background: var(--paper-card); border-radius: var(--radius-lg);
+    width: 100%; max-width: 460px; padding: 28px; border: 1px solid var(--line);
+    box-shadow: var(--shadow-lg); position: relative;
+    transform: translateY(10px); transition: transform 0.25s ease;
+  }
+  .modal-overlay.open .modal-card { transform: translateY(0); }
+
+  .modal-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+  .modal-head h3 { font-family: var(--disp); font-size: 20px; margin: 0; }
+  .modal-close { background: none; border: none; font-size: 20px; cursor: pointer; color: var(--toner); padding: 4px; }
+  
+  .feedback-form { display: flex; flex-direction: column; gap: 14px; }
+  .feedback-form textarea {
+    width: 100%; border: 1px solid var(--line); border-radius: var(--radius-sm);
+    padding: 12px; font-family: var(--body); font-size: 14px; resize: vertical; min-height: 100px;
+    outline: none; background: var(--paper);
+  }
+  .feedback-form textarea:focus { border-color: var(--cyan); }
+  .feedback-status { font-size: 13px; margin: 0; display: none; padding: 8px 12px; border-radius: var(--radius-sm); }
+  .feedback-status.success { display: block; background: var(--emerald-bg); color: var(--emerald); }
+  .feedback-status.error { display: block; background: #FEF2F2; color: #DC2626; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--line); padding: 40px 0; margin-top: 60px;
+    background: var(--paper-card);
+  }
+  .foot-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+  .foot-row p { margin: 0; font-family: var(--mono); font-size: 12px; color: var(--toner); }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; animation: none !important; }
+  }
+
+  /* SEO v2 additions */
+  .hero { padding: 56px 0 8px; }
+  .chips { display:flex; flex-wrap:wrap; gap:10px; margin:0 0 8px; padding:0; list-style:none; }
+  .chips li { font-family:var(--mono); font-size:12px; font-weight:600; color:var(--ink); background:var(--paper-card); border:1px solid var(--line); border-radius:20px; padding:7px 14px; display:flex; gap:8px; align-items:center; }
+  .chips li::before { content:"✓"; color:var(--emerald); font-weight:700; }
+  #herramienta.section { padding-top: 32px; }
+  .presets { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:4px; }
+  .presets .plabel { font-family:var(--mono); font-size:11px; font-weight:600; color:var(--toner); text-transform:uppercase; letter-spacing:.05em; width:100%; }
+  .preset { font-family:var(--body); font-size:13px; font-weight:600; padding:8px 14px; border-radius:20px; border:1px solid var(--line); background:var(--paper-card); color:var(--ink); cursor:pointer; transition:all .15s; }
+  .preset:hover { border-color:var(--cyan); color:var(--cyan); }
+  .preset.on { background:var(--ink); color:var(--paper); border-color:var(--ink); }
+  .cards3 { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
+  @media (max-width:760px){ .cards3 { grid-template-columns:1fr; } }
+  .ucard { background:var(--paper-card); border:1px solid var(--line); border-radius:var(--radius-md); padding:24px; box-shadow:var(--shadow-sm); display:flex; flex-direction:column; gap:10px; }
+  .ucard h3 { font-family:var(--disp); font-size:19px; margin:0; letter-spacing:-.01em; }
+  .ucard p { margin:0; color:var(--toner); font-size:14px; }
+  .spec { font-family:var(--mono); font-size:12px; color:var(--cyan); background:var(--cyan-soft); border-radius:6px; padding:6px 10px; width:fit-content; }
+  .ucard .btn { margin-top:auto; align-self:flex-start; padding:10px 18px; }
+  .tools-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  @media (max-width:860px){ .tools-grid { grid-template-columns:1fr 1fr; } }
+  @media (max-width:560px){ .tools-grid { grid-template-columns:1fr; } }
+  .tool-link { display:block; text-decoration:none; background:var(--paper-card); border:1px solid var(--line); border-radius:var(--radius-md); padding:18px; transition:transform .2s, box-shadow .2s, border-color .2s; }
+  .tool-link:hover { transform:translateY(-3px); box-shadow:var(--shadow-md); border-color:var(--cyan); }
+  .tool-link strong { display:block; font-family:var(--disp); font-size:16px; margin-bottom:4px; }
+  .tool-link span { font-size:13px; color:var(--toner); }
+  .faq { display:grid; gap:14px; max-width:820px; }
+  .faq-item { background:var(--paper-card); border:1px solid var(--line); border-radius:var(--radius-md); padding:20px 24px; }
+  .faq-item h3 { font-family:var(--disp); font-size:17px; margin:0 0 8px; }
+  .faq-item p { margin:0; color:var(--toner); font-size:14.5px; }
+  .anim .reveal { opacity:0; transform:translateY(18px); transition:opacity .6s cubic-bezier(.16,1,.3,1), transform .6s cubic-bezier(.16,1,.3,1); }
+  .anim .reveal.in { opacity:1; transform:none; }
+  .halftone-wrap { margin-bottom:48px; }
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add("js")</script>
+
+<header>
+  <div class="wrap nav">
+    <a href="#top" class="brand">
+      <span class="brand-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+          <circle cx="8.5" cy="8.5" r="1.5"/>
+          <polyline points="21 15 16 10 5 21"/>
+        </svg>
+      </span>
+      Optifile
+    </a>
+    <nav class="nav-links">
+      <a href="#herramienta">Comprimir</a>
+      <a href="#guia">Qué ajustes elegir</a>
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#faq">Preguntas</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero wrap">
+    <span class="eyebrow">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      Gratis · Sin registro · Se procesa en tu navegador
+    </span>
+    <h1>Compresor de imágenes online gratis: <em>reduce el peso</em> para web e impresión</h1>
+    <p class="hero-sub">
+      <b>Comprime imágenes online gratis</b>: sube tu foto JPG, PNG o WebP y reduce su peso y su tamaño en segundos, sin perder calidad visible. Como Optifile también ajusta los DPI y el color, el mismo archivo sirve para <b>cargar rápido en tu web</b> y para <b>imprimir gastando menos tinta</b>.
+    </p>
+    <ul class="chips" aria-label="Ventajas principales">
+      <li>Sin marca de agua</li>
+      <li>Sin registro ni programas que instalar</li>
+      <li>Tus archivos no salen de tu dispositivo</li>
+      <li>Original y comprimida lado a lado</li>
+      <li>Funciona en móvil y ordenador</li>
+    </ul>
+  </section>
+
+  <section class="section" id="herramienta">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">Compresor de imágenes</span>
+        <h2>Comprime tu imagen online: sube, ajusta y descarga</h2>
+        <p>Arrastra tu foto, elige un ajuste rápido o regula a mano el ancho, los DPI y la calidad. Verás el peso en KB o MB antes de descargar, con el comparador de original y optimizada.</p>
+      </div>
+
+      <div class="tool">
+        <div class="tool-top">
+          <span>optifile · compresor de imágenes</span>
+          <div class="dots"><span></span><span></span><span></span></div>
+        </div>
+
+        <div class="drop" id="drop">
+          <input type="file" id="fileInput" accept="image/*">
+          <div class="drop-icon-wrap">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          </div>
+          <p>Arrastra una imagen aquí o haz clic para seleccionar</p>
+          <span>JPG, PNG o WebP · Se descarga como JPG más ligero · No se sube a ningún servidor</span>
+        </div>
+
+        <div class="studio" id="studio">
+          <div class="studio-grid">
+            <div class="compare-container">
+              <div class="compare" id="compare">
+                <img class="before" id="imgBefore" alt="Imagen original">
+                <img class="after" id="imgAfter" alt="Imagen optimizada">
+                <div class="compare-handle" id="handle"></div>
+                <input type="range" class="compare-range" id="compareRange" min="0" max="100" value="50">
+              </div>
+              <div class="compare-tags"><span>Original</span><span>Optimizada</span></div>
+
+              <div class="stats" id="stats">
+                <div class="stat"><div class="n" id="statSizeBefore">—</div><div class="l">Peso original</div></div>
+                <div class="stat good"><div class="n" id="statSizeAfter">—</div><div class="l">Peso optimizado</div></div>
+                <div class="stat good"><div class="n" id="statReduction">—</div><div class="l">Ahorro datos</div></div>
+                <div class="stat"><div class="n" id="statDims">—</div><div class="l">Píxeles reales</div></div>
+              </div>
+
+              <div class="note">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex:none; color:var(--cyan);"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                <span>Una imagen más ligera carga antes en tu web, cabe en un email o en WhatsApp y llega a la impresora con menos datos que procesar.</span>
+              </div>
+            </div>
+
+            <div class="settings">
+              <div class="presets" role="group" aria-label="Ajustes rápidos">
+                <span class="plabel">Ajuste rápido según el uso</span>
+                <button type="button" class="preset" data-preset="web">Web / SEO</button>
+                <button type="button" class="preset" data-preset="email">Email y WhatsApp</button>
+                <button type="button" class="preset" data-preset="ink">Imprimir con poca tinta</button>
+                <button type="button" class="preset" data-preset="photo">Impresión de calidad</button>
+              </div>
+              <fieldset>
+                <legend>Tamaño y dimensiones</legend>
+                <div class="field">
+                  <label for="widthCm">Ancho final de la imagen (cm), en pantalla o en papel</label>
+                  <input type="number" id="widthCm" value="15" min="2" max="60" step="0.5">
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>Resolución (DPI / PPP)</legend>
+                <div class="radio-row">
+                  <label class="radio-opt">
+                    <input type="radio" name="dpi" value="150" checked>
+                    <span><span class="lbl">150 DPI — Ligero (web y borradores)</span><span class="hint">El peso más bajo y el menor gasto de tinta. Ideal para web, email y apuntes.</span></span>
+                  </label>
+                  <label class="radio-opt">
+                    <input type="radio" name="dpi" value="200">
+                    <span><span class="lbl">200 DPI — Equilibrado</span><span class="hint">Buena nitidez para informes, presentaciones y blogs.</span></span>
+                  </label>
+                  <label class="radio-opt">
+                    <input type="radio" name="dpi" value="300">
+                    <span><span class="lbl">300 DPI — Máxima definición</span><span class="hint">Para fotografías e impresión de calidad, donde sí se nota el detalle.</span></span>
+                  </label>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>Color y tonos</legend>
+                <label class="checkline">
+                  <input type="checkbox" id="grayscale">
+                  <span><span class="lbl">Escala de grises</span><span class="hint">Para documentos, apuntes y gráficos sin color: baja el peso y el gasto de tinta.</span></span>
+                </label>
+                <label class="checkline">
+                  <input type="checkbox" id="posterize">
+                  <span><span class="lbl">Simplificar degradados</span><span class="hint">Agrupa los tonos en menos niveles. Va bien en gráficos; en fotos puede notarse.</span></span>
+                </label>
+              </fieldset>
+
+              <fieldset>
+                <legend>Calidad JPG</legend>
+                <div class="field">
+                  <div class="range-header">
+                    <label for="quality">Nivel de compresión</label>
+                    <span class="range-val" id="qualityVal">80%</span>
+                  </div>
+                  <input type="range" id="quality" min="40" max="95" value="80">
+                </div>
+              </fieldset>
+
+              <div class="actions-row">
+                <button class="btn btn-primary" id="downloadBtn" disabled>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  Descargar imagen comprimida
+                </button>
+                <button class="btn btn-ghost" id="resetBtn">Otra imagen</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="guia">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="kicker">Qué ajustes elegir</span>
+        <h2>¿Cómo comprimir una imagen según para qué la uses?</h2>
+        <p>Comprimir una imagen para una web no es lo mismo que prepararla para imprimir. Elige tu caso y Optifile aplica ancho, DPI, calidad y color; después puedes retocar lo que quieras.</p>
+      </div>
+      <div class="cards3">
+        <article class="ucard reveal">
+          <h3>Comprimir imágenes para web y SEO</h3>
+          <p>Reduce el peso de las fotos de tu web para que carguen antes y no frenen el SEO. Con 150 DPI y calidad 78 % el ahorro de KB es grande y la diferencia suele pasar desapercibida.</p>
+          <span class="spec">20 cm · 150 DPI · calidad 78 %</span>
+          <button class="btn btn-ghost" data-apply="web">Aplicar ajuste web</button>
+        </article>
+        <article class="ucard reveal">
+          <h3>Reducir el peso para email y WhatsApp</h3>
+          <p>Baja los MB de una foto para mandarla por email o WhatsApp sin chocar con el límite de adjuntos ni gastar datos. Útil también para fotos del móvil que vas a compartir.</p>
+          <span class="spec">12 cm · 150 DPI · calidad 70 %</span>
+          <button class="btn btn-ghost" data-apply="email">Aplicar ajuste email</button>
+        </article>
+        <article class="ucard reveal">
+          <h3>Preparar imágenes para imprimir con menos tinta</h3>
+          <p>Para apuntes, documentos o escaneos en JPG que vas a imprimir: escala de grises y 150 DPI. La impresora recibe menos datos y gasta menos tinta que con una imagen a todo color y 300 DPI.</p>
+          <span class="spec">15 cm · 150 DPI · escala de grises</span>
+          <button class="btn btn-ghost" data-apply="ink">Aplicar ajuste ahorro</button>
+        </article>
+        <article class="ucard reveal">
+          <h3>Optimizar fotos para impresión de calidad</h3>
+          <p>Para fotos que van a papel de verdad: 300 DPI y compresión suave. Quitas los megapíxeles que la impresión no aprovecha y conservas el detalle que sí se ve.</p>
+          <span class="spec">15 cm · 300 DPI · calidad 90 %</span>
+          <button class="btn btn-ghost" data-apply="photo">Aplicar ajuste calidad</button>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="como-funciona">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">Cómo funciona</span>
+        <h2>¿Cómo funciona el compresor de imágenes de Optifile?</h2>
+        <p>Optifile no se limita a mover un deslizador de calidad: ajusta tres cosas, en este orden, antes de generar el JPG final.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="num">01</div>
+          <h3>Escalado Físico Inteligente</h3>
+          <p>Calculamos los píxeles que necesitas según el ancho en cm y los DPI elegidos, y reducimos la imagen a ese tamaño. Es lo que más peso quita: una foto del móvil con píxeles de más no se ve mejor, solo pesa más.</p>
+        </div>
+        <div class="step">
+          <div class="num">02</div>
+          <h3>Simplificación de Tonos</h3>
+          <p>Si lo activas, pasamos la imagen a escala de grises o agrupamos los degradados en menos niveles de tono. Menos variaciones de color son menos datos que guardar y menos tinta al imprimir.</p>
+        </div>
+        <div class="step">
+          <div class="num">03</div>
+          <h3>Limpieza de Metadatos EXIF</h3>
+          <p>Al regenerar la imagen se descartan los datos EXIF de la cámara (modelo, fecha, ubicación GPS) y los perfiles de color incrustados. El archivo sale más limpio y sin datos personales.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="por-que">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">Ventajas</span>
+        <h2>Por qué comprimir tus imágenes: web más rápida e impresión más barata</h2>
+        <p>Un archivo bien dimensionado se nota en tres sitios: lo que tarda tu web en cargar, lo que gasta tu impresora y lo que se comparte de ti al enviarlo.</p>
+      </div>
+      <div class="halftone-wrap reveal"><div class="halftone-container">
+      <svg class="halftone" id="halftoneSig" viewBox="0 0 1120 50" preserveAspectRatio="none"></svg>
+      <div class="halftone-caption">
+        <span>Imagen Pesada / Modo Foto</span>
+        <span>Imagen Optimizada / Carga y Trama Eficiente</span>
+      </div>
+    </div>
+      </div>
+      <div class="why">
+        <div class="triggers">
+          <div class="trigger">
+            <span class="tag">WEB</span>
+            <div>
+              <h3>Carga ultra rápida</h3>
+              <p>Menos KB por imagen: páginas que cargan antes, menos datos móviles gastados y mejor base para el SEO. Las fotos sin optimizar suelen ser lo que más pesa en una web.</p>
+            </div>
+          </div>
+          <div class="trigger">
+            <span class="tag">INK</span>
+            <div>
+              <h3>Menor consumo de tinta y tóner</h3>
+              <p>Bajar los DPI y pasar a escala de grises envía menos información a la impresora. En borradores, apuntes y documentos significa menos tinta o tóner con la misma legibilidad.</p>
+            </div>
+          </div>
+          <div class="trigger">
+            <span class="tag">LOCAL</span>
+            <div>
+              <h3>Privacidad total en tu navegador</h3>
+              <p>No hay servidor de por medio: la compresión se hace en tu dispositivo. La foto no se sube ni se guarda, y no hace falta registrarse ni instalar ningún programa.</p>
+            </div>
+          </div>
+        </div>
+        <div class="why-visual">
+          <svg id="dpiCompare" viewBox="0 0 320 220"></svg>
+          <p class="cap">Comparativa de densidad: la misma imagen con la mitad de puntos pesa menos y se imprime con menos tinta.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="mas-herramientas">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="kicker">Más formas de comprimir</span>
+        <h2>Otras herramientas para reducir el peso de tus imágenes</h2>
+        <p>Si lo que necesitas es algo más concreto, cada caso tiene su propia página con los ajustes ya preparados.</p>
+      </div>
+      <!-- Las URLs de abajo son la arquitectura propuesta: crea cada página antes de publicar para no generar 404 -->
+      <div class="tools-grid">
+        <a class="tool-link reveal" href="/comprimir-jpg"><strong>Comprimir JPG online</strong><span>Para fotos JPG y JPEG, desde una compresión suave hasta el máximo.</span></a>
+        <a class="tool-link reveal" href="/comprimir-png"><strong>Reducir peso de PNG</strong><span>Capturas, logos y gráficos pesados, sin complicaciones.</span></a>
+        <a class="tool-link reveal" href="/reducir-imagen-a-kb-mb"><strong>Reducir imagen a 1 MB o 500 KB</strong><span>Cumple el límite de formularios y trámites: 2 MB, 1 MB, 500 KB, 250 KB o 15 KB.</span></a>
+        <a class="tool-link reveal" href="/bajar-resolucion-imagen"><strong>Bajar resolución de una imagen</strong><span>Cambia los DPI o PPP de una foto para pantalla o para papel.</span></a>
+        <a class="tool-link reveal" href="/cambiar-tamano-imagen"><strong>Cambiar tamaño de imagen</strong><span>Ajusta píxeles y dimensiones, también para Instagram o el perfil de WhatsApp.</span></a>
+        <a class="tool-link reveal" href="/optimizar-imagenes-web"><strong>Optimizar imágenes para web</strong><span>Prepara fotos y PNG para tu página: más rápidas y mejores para el SEO.</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="kicker">Preguntas frecuentes</span>
+        <h2>Preguntas frecuentes sobre el compresor de imágenes</h2>
+      </div>
+      <div class="faq">
+        <div class="faq-item reveal"><h3>¿El compresor de imágenes es gratis?</h3><p>Sí. Puedes comprimir imágenes online gratis, sin registrarte, sin marca de agua y sin límite de imágenes. No hay que instalar ningún programa: funciona desde el navegador.</p></div>
+        <div class="faq-item reveal"><h3>¿Mis imágenes se suben a un servidor?</h3><p>No. La compresión se hace en tu navegador, así que la foto no sale de tu dispositivo ni se guarda en ningún sitio. Es útil cuando la imagen es personal o de trabajo y prefieres no subirla a un servicio externo.</p></div>
+        <div class="faq-item reveal"><h3>¿Se pierde calidad al comprimir una imagen?</h3><p>El JPG comprime descartando detalle que apenas se percibe. Con una calidad de 75-85 % la diferencia suele ser difícil de apreciar, y con el comparador de original y optimizada lo compruebas antes de descargar. Por debajo de ese rango empiezan a verse artefactos.</p></div>
+        <div class="faq-item reveal"><h3>¿Qué formatos puedo comprimir?</h3><p>Puedes cargar fotos en JPG, PNG y WebP. El resultado se descarga siempre como JPG, el formato más ligero para fotografías. Si tu PNG tiene transparencia, el fondo transparente se convierte en blanco.</p></div>
+        <div class="faq-item reveal"><h3>¿Cuántos DPI necesito para imprimir una imagen?</h3><p>150 DPI (o PPP, puntos por pulgada) bastan para borradores y documentos, 200 para informes y presentaciones, y 300 para fotografías o impresión de calidad. Más allá de eso solo aumenta el peso. Optifile calcula los píxeles a partir del ancho en cm y los DPI que elijas.</p></div>
+        <div class="faq-item reveal"><h3>¿Cuánto se puede reducir el peso de una imagen?</h3><p>Depende de la imagen. Las fotos de cámara o de móvil, que pueden pesar varios MB, son las que más bajan, porque suelen tener muchos más píxeles de los necesarios. Si un formulario o un email te pide menos de 1 MB, reduce el ancho o la calidad hasta que el peso optimizado quede por debajo del límite.</p></div>
+        <div class="faq-item reveal"><h3>¿Funciona en el móvil?</h3><p>Sí. Funciona en cualquier navegador de Android, iPhone, tablet u ordenador, sin instalar una app. Es una forma rápida de bajar el peso de las fotos del móvil antes de enviarlas por WhatsApp o por email.</p></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FLOATING FEEDBACK MODAL -->
+<button class="feedback-btn" id="openFeedback">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+  Sugerencias
+</button>
+
+<div class="modal-overlay" id="feedbackModal">
+  <div class="modal-card">
+    <div class="modal-head">
+      <h3>Envía tus sugerencias</h3>
+      <button class="modal-close" id="closeFeedback">&times;</button>
+    </div>
+    
+    <form class="feedback-form" id="feedbackForm">
+      <p style="margin: 0; font-size: 13.5px; color: var(--toner);">¿Tienes alguna idea para mejorar Optifile o has encontrado algún fallo?</p>
+      <textarea id="feedbackMessage" placeholder="Cuéntanos qué te gustaría mejorar..." required></textarea>
+      <p class="feedback-status" id="feedbackStatus"></p>
+      <button type="submit" class="btn btn-primary" id="sendFeedbackBtn" style="width: 100%;">Enviar comentario</button>
+    </form>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap foot-row">
+    <p>Optifile — Compresor de imágenes online gratis para web e impresión.</p>
+    <p>&copy; Optifile</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // ---------- CONFIGURACIÓN CLOUDFLARE WORKER ----------
+  // Asegúrate de reemplazar esta URL por la de tu Worker publicado en Cloudflare
+  const WORKER_URL = "https://compresordeimagenes.vdescobar7.workers.dev";
+
+  // Modal feedback logic
+  const openFeedback = document.getElementById('openFeedback');
+  const closeFeedback = document.getElementById('closeFeedback');
+  const feedbackModal = document.getElementById('feedbackModal');
+  const feedbackForm = document.getElementById('feedbackForm');
+  const feedbackMessage = document.getElementById('feedbackMessage');
+  const feedbackStatus = document.getElementById('feedbackStatus');
+  const sendFeedbackBtn = document.getElementById('sendFeedbackBtn');
+
+  openFeedback.addEventListener('click', () => feedbackModal.classList.add('open'));
+  closeFeedback.addEventListener('click', () => feedbackModal.classList.remove('open'));
+  feedbackModal.addEventListener('click', (e) => {
+    if(e.target === feedbackModal) feedbackModal.classList.remove('open');
+  });
+
+  // Envío seguro mediante Cloudflare Worker
+  feedbackForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const mensaje = feedbackMessage.value.trim();
+    if(!mensaje) return;
+
+    sendFeedbackBtn.disabled = true;
+    sendFeedbackBtn.textContent = 'Enviando...';
+    feedbackStatus.className = 'feedback-status';
+
+    try {
+      const res = await fetch(WORKER_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ mensaje })
+      });
+
+      if(res.ok) {
+        feedbackStatus.textContent = '¡Sugerencia enviada con éxito! Gracias.';
+        feedbackStatus.classList.add('success');
+        feedbackMessage.value = '';
+        setTimeout(() => feedbackModal.classList.remove('open'), 2000);
+      } else {
+        throw new Error();
+      }
+    } catch(err) {
+      feedbackStatus.textContent = 'Hubo un error al enviar. Inténtalo de nuevo.';
+      feedbackStatus.classList.add('error');
+    } finally {
+      sendFeedbackBtn.disabled = false;
+      sendFeedbackBtn.textContent = 'Enviar comentario';
+    }
+  });
+
+  // ---------- Signature halftone strip (hero) ----------
+  const sig = document.getElementById('halftoneSig');
+  const sigCols = 34, sigW = 1120, sigH = 50;
+  let sigHtml = '';
+  for(let i=0;i<sigCols;i++){
+    const t = i/(sigCols-1);
+    const cx = (i+0.5)*(sigW/sigCols);
+    const cy = sigH/2;
+    const r = Math.max(0.6, 6.5*(1-t)*(1-t) + 0.6);
+    const opacity = 0.9 - t*0.55;
+    sigHtml += `<circle cx="${cx.toFixed(1)}" cy="${cy}" r="${r.toFixed(2)}" fill="#0F172A" opacity="${opacity.toFixed(2)}"/>`;
+  }
+  sig.innerHTML = sigHtml;
+
+  // ---------- DPI comparison illustration ----------
+  const dpiSvg = document.getElementById('dpiCompare');
+  let dpiHtml = '<rect x="0" y="0" width="320" height="220" fill="none"/>';
+  dpiHtml += `<text x="10" y="20" font-family="JetBrains Mono" font-size="10" font-weight="600" fill="#64748B">ALTA DENSIDAD (300 DPI)</text>`;
+  for(let y=0;y<8;y++){
+    for(let x=0;x<8;x++){
+      dpiHtml += `<circle cx="${18+x*17}" cy="${40+y*17}" r="6" fill="#0F172A" opacity="0.85"/>`;
+    }
+  }
+  dpiHtml += `<text x="180" y="20" font-family="JetBrains Mono" font-size="10" font-weight="600" fill="#0284C7">OPTIMIZADO (150 DPI)</text>`;
+  for(let y=0;y<8;y++){
+    for(let x=0;x<8;x++){
+      if((x+y)%2===0){
+        dpiHtml += `<circle cx="${188+x*17}" cy="${40+y*17}" r="4" fill="#0284C7" opacity="0.85"/>`;
+      }
+    }
+  }
+  dpiHtml += `<line x1="0" y1="190" x2="320" y2="190" stroke="#CBD5E1" stroke-width="1"/>`;
+  dpiHtml += `<text x="0" y="208" font-family="JetBrains Mono" font-size="10" font-weight="600" fill="#059669">Respuesta más rápida + Menos recursos</text>`;
+  dpiSvg.innerHTML = dpiHtml;
+
+  // ---------- Elements ----------
+  const drop = document.getElementById('drop');
+  const fileInput = document.getElementById('fileInput');
+  const studio = document.getElementById('studio');
+  const imgBefore = document.getElementById('imgBefore');
+  const imgAfter = document.getElementById('imgAfter');
+  const compareRange = document.getElementById('compareRange');
+  const handle = document.getElementById('handle');
+  const downloadBtn = document.getElementById('downloadBtn');
+  const resetBtn = document.getElementById('resetBtn');
+  const widthCm = document.getElementById('widthCm');
+  const qualityInput = document.getElementById('quality');
+  const qualityVal = document.getElementById('qualityVal');
+  const grayscaleChk = document.getElementById('grayscale');
+  const posterizeChk = document.getElementById('posterize');
+  const statSizeBefore = document.getElementById('statSizeBefore');
+  const statSizeAfter = document.getElementById('statSizeAfter');
+  const statReduction = document.getElementById('statReduction');
+  const statDims = document.getElementById('statDims');
+
+  let originalImage = null;
+  let originalFile = null;
+  let outputBlob = null;
+  let debounceTimer = null;
+
+  function fmtKB(bytes){
+    if(bytes < 1024) return bytes + ' B';
+    return (bytes/1024).toFixed(0) + ' KB';
+  }
+
+  function openFile(file){
+    if(!file || !file.type.startsWith('image/')) return;
+    originalFile = file;
+    const url = URL.createObjectURL(file);
+    const img = new Image();
+    img.onload = function(){
+      originalImage = img;
+      imgBefore.src = url;
+      studio.classList.add('active');
+      statSizeBefore.textContent = fmtKB(file.size);
+      process();
+    };
+    img.src = url;
+  }
+
+  drop.addEventListener('click', () => fileInput.click());
+  fileInput.addEventListener('change', e => openFile(e.target.files[0]));
+
+  ['dragenter','dragover'].forEach(evt => {
+    drop.addEventListener(evt, e => { e.preventDefault(); drop.classList.add('drag'); });
+  });
+  ['dragleave','drop'].forEach(evt => {
+    drop.addEventListener(evt, e => { e.preventDefault(); drop.classList.remove('drag'); });
+  });
+  drop.addEventListener('drop', e => {
+    const file = e.dataTransfer.files[0];
+    openFile(file);
+  });
+
+  function stepDownscale(img, targetW, targetH){
+    let curW = img.naturalWidth, curH = img.naturalHeight;
+    let srcCanvas = document.createElement('canvas');
+    srcCanvas.width = curW; srcCanvas.height = curH;
+    srcCanvas.getContext('2d').drawImage(img, 0, 0);
+
+    while(curW * 0.5 > targetW){
+      const nw = Math.round(curW*0.5), nh = Math.round(curH*0.5);
+      const c = document.createElement('canvas');
+      c.width = nw; c.height = nh;
+      c.getContext('2d').drawImage(srcCanvas, 0, 0, nw, nh);
+      srcCanvas = c; curW = nw; curH = nh;
+    }
+    const finalCanvas = document.createElement('canvas');
+    finalCanvas.width = targetW; finalCanvas.height = targetH;
+    const fctx = finalCanvas.getContext('2d'); fctx.fillStyle = '#fff'; fctx.fillRect(0, 0, targetW, targetH); fctx.drawImage(srcCanvas, 0, 0, targetW, targetH);
+    return finalCanvas;
+  }
+
+  function process(){
+    if(!originalImage) return;
+    const cm = Math.max(2, Math.min(60, parseFloat(widthCm.value) || 15));
+    const dpi = parseInt(document.querySelector('input[name=dpi]:checked').value, 10);
+    const quality = parseInt(qualityInput.value, 10) / 100;
+    qualityVal.textContent = qualityInput.value + '%';
+
+    const aspect = originalImage.naturalHeight / originalImage.naturalWidth;
+    let targetW = Math.round(dpi * (cm / 2.54));
+    targetW = Math.min(targetW, originalImage.naturalWidth);
+    targetW = Math.max(targetW, 20);
+    let targetH = Math.round(targetW * aspect);
+
+    const canvas = stepDownscale(originalImage, targetW, targetH);
+    const ctx = canvas.getContext('2d');
+
+    if(grayscaleChk.checked || posterizeChk.checked){
+      const data = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const d = data.data;
+      const levels = 6;
+      for(let i=0; i<d.length; i+=4){
+        let r=d[i], g=d[i+1], b=d[i+2];
+        if(grayscaleChk.checked){
+          const gray = 0.299*r + 0.587*g + 0.114*b;
+          r=g=b=gray;
+        }
+        if(posterizeChk.checked){
+          const step = 255/(levels-1);
+          r = Math.round(Math.round(r/step)*step);
+          g = Math.round(Math.round(g/step)*step);
+          b = Math.round(Math.round(b/step)*step);
+        }
+        d[i]=r; d[i+1]=g; d[i+2]=b;
+      }
+      ctx.putImageData(data, 0, 0);
+    }
+
+    canvas.toBlob(function(blob){
+      outputBlob = blob;
+      const url = URL.createObjectURL(blob);
+      imgAfter.src = url;
+      statSizeAfter.textContent = fmtKB(blob.size);
+      const reduction = originalFile ? Math.max(0, 100 - (blob.size/originalFile.size*100)) : 0;
+      statReduction.textContent = reduction.toFixed(0) + '%';
+      statDims.textContent = canvas.width + '×' + canvas.height;
+      downloadBtn.disabled = false;
+    }, 'image/jpeg', quality);
+  }
+
+  function scheduleProcess(){
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(process, 150);
+  }
+
+  [widthCm, qualityInput, grayscaleChk, posterizeChk].forEach(el => {
+    el.addEventListener('input', scheduleProcess);
+  });
+  document.querySelectorAll('input[name=dpi]').forEach(el => {
+    el.addEventListener('change', scheduleProcess);
+  });
+
+  compareRange.addEventListener('input', () => {
+    const v = compareRange.value;
+    imgAfter.parentElement.querySelector('.after').style.clipPath = `inset(0 0 0 ${v}%)`;
+    handle.style.left = v + '%';
+  });
+
+  downloadBtn.addEventListener('click', () => {
+    if(!outputBlob) return;
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(outputBlob);
+    const base = originalFile ? originalFile.name.replace(/\.[^.]+$/, '') : 'imagen';
+    a.download = base + '-optifile.jpg';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  });
+
+  resetBtn.addEventListener('click', () => {
+    studio.classList.remove('active');
+    fileInput.value = '';
+    originalImage = null; originalFile = null; outputBlob = null;
+    downloadBtn.disabled = true;
+    statSizeBefore.textContent = statSizeAfter.textContent = statReduction.textContent = statDims.textContent = '—';
+  });
+  // ---------- Presets de uso (web, email, impresión) ----------
+  const PRESETS = {
+    web:   { cm: 20, dpi: 150, q: 78, gray: false },
+    email: { cm: 12, dpi: 150, q: 70, gray: false },
+    ink:   { cm: 15, dpi: 150, q: 80, gray: true  },
+    photo: { cm: 15, dpi: 300, q: 90, gray: false }
+  };
+  function applyPreset(name){
+    const p = PRESETS[name]; if(!p) return;
+    widthCm.value = p.cm;
+    document.querySelector('input[name=dpi][value="'+p.dpi+'"]').checked = true;
+    qualityInput.value = p.q;
+    grayscaleChk.checked = p.gray;
+    posterizeChk.checked = false;
+    document.querySelectorAll('.preset').forEach(b => b.classList.toggle('on', b.dataset.preset === name));
+    process();
+  }
+  document.querySelectorAll('.preset').forEach(b => b.addEventListener('click', () => applyPreset(b.dataset.preset)));
+  document.querySelectorAll('[data-apply]').forEach(b => b.addEventListener('click', () => {
+    applyPreset(b.dataset.apply);
+    document.getElementById('herramienta').scrollIntoView({behavior:'smooth'});
+  }));
+
+  // ---------- Animación de entrada (respeta reduced-motion) ----------
+  const revealEls = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches){
+    document.documentElement.classList.add('anim');
+    const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold:.12});
+    revealEls.forEach(el => io.observe(el));
+  } else { revealEls.forEach(el => el.classList.add('in')); }
+})();
+</script>
+
+</body>
+</html>
