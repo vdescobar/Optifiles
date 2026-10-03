@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://optifiles.netlify.app/sitemap.xml
